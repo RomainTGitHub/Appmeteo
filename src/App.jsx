@@ -12,34 +12,35 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
+  const fetchWeatherData = async () => {
+    if (!city) return;
 
- const fetchWeatherData = async () => {
-  if (!city) return;
+    setLoading(true);
+    setError(null);
 
-  setLoading(true);
-  setError(null);
+    try {
+      // Requête pour la météo actuelle
+      const currentWeatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=fr`);
+      if (!currentWeatherResponse.ok) throw new Error('Ville non trouvée ou erreur de l\'API.');
+      const currentData = await currentWeatherResponse.json();
+      setWeatherData(currentData);
+      
+      // Requête pour les prévisions sur 5 jours
+      const forecastResponse = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric&lang=fr`);
+      if (!forecastResponse.ok) throw new Error('Prévisions non disponibles pour cette ville.');
+      const forecastData = await forecastResponse.json();
+      setForecastData(forecastData);
 
-  try {
-    // Appel sécurisé à votre fonction sans serveur
-    const response = await fetch(`/api/donnees?city=${city}`); 
-    if (!response.ok) {
-      throw new Error('Erreur lors de la récupération des données.');
+    } catch (err) {
+      setError(err.message);
+      setWeatherData(null);
+      setForecastData(null);
+    } finally {
+      setLoading(false);
     }
-    const data = await response.json();
-    
-    // Assigner les données combinées à vos états
-    setWeatherData(data.weather);
-    setForecastData(data.forecast);
-
-  } catch (err) {
-    setError(err.message);
-    setWeatherData(null);
-    setForecastData(null);
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   useEffect(() => {
     fetchWeatherData();
