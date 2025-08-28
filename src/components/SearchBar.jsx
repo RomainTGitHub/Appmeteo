@@ -12,7 +12,7 @@ function SearchBar({ onSearch }) {
     const fetchSuggestions = async () => {
       if (input.length > 0) {
         try {
-          const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=5&appid=${apiKey}`);
+          const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=5&appid=${apiKey}`);
           if (!response.ok) {
             throw new Error('Erreur lors de la récupération des suggestions');
           }
