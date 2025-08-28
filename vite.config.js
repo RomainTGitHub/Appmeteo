@@ -5,5 +5,5 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   // NOUVEAU : Ajoute cette ligne pour les chemins relatifs
-  base: '/mon-app-meteo/',
+  base: '/Appmeteo/',
 })
