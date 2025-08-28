@@ -26,7 +26,7 @@ function App() {
       if (!currentWeatherResponse.ok) throw new Error('Ville non trouvée ou erreur de l\'API.');
       const currentData = await currentWeatherResponse.json();
       setWeatherData(currentData);
-      
+
       // Requête pour les prévisions sur 5 jours
       const forecastResponse = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric&lang=fr`);
       if (!forecastResponse.ok) throw new Error('Prévisions non disponibles pour cette ville.');
@@ -55,7 +55,6 @@ function App() {
         <SearchBar onSearch={setCity} />
         {loading && <p>Chargement en cours...</p>}
         {error && <p className="error">{error}</p>}
-        {/* NOUVEAU CONTENEUR POUR L'ALIGNEMENT */}
         <div className="weather-and-forecast-container">
           {!loading && !error && weatherData && <WeatherDisplay data={weatherData} />}
           {!loading && !error && forecastData && <ForecastDisplay data={forecastData} />}
