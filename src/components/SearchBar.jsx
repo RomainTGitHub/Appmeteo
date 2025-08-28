@@ -5,7 +5,7 @@ function SearchBar({ onSearch }) {
   const [input, setInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   
-  const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
+  const apiKey = "2c3c31456a3c5cdf1e09b8b657440502";
 
   // Appel API pour les suggestions de ville
   useEffect(() => {
