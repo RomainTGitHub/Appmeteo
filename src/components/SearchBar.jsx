@@ -56,12 +56,18 @@ function SearchBar({ onSearch }) {
       />
       {suggestions.length > 0 && (
         <ul className="suggestions-list">
-          {suggestions.map((city, index) => (
-            <li key={index} onClick={() => handleSuggestionClick(city.name)}>
-              {city.name}, {city.country}
-            </li>
-          ))}
-        </ul>
+  {suggestions.map((city, index) => {
+    // Ajout de la traduction ici
+    const regionNames = new Intl.DisplayNames(['fr'], { type: 'region' });
+    const countryName = regionNames.of(city.country);
+
+    return (
+      <li key={index} onClick={() => handleSuggestionClick(city.name)}>
+        {city.name}, {countryName} {/* Utilisation du nom complet */}
+      </li>
+    );
+  })}
+</ul>
       )}
       <button onClick={() => handleSearch(input)}>Rechercher</button>
     </div>

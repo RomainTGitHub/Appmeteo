@@ -18,7 +18,7 @@ function WeatherDisplay({ data }) {
 
   return (
     <div className="weather-display">
-      <h2>Météo pour {name}, {country}</h2>
+      <h2>Météo pour {name}, {countryName}</h2>
       <div className="weather-icon-container">
         {getWeatherIcon(weatherId)}
       </div>
