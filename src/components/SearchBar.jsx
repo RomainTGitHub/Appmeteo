@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 function SearchBar({ onSearch }) {
   const [input, setInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  
-  const apiKey = "2c3c31456a3c5cdf1e09b8b657440502";
+
+  const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
   // Appel API pour les suggestions de ville
   useEffect(() => {
@@ -18,13 +18,12 @@ function SearchBar({ onSearch }) {
           }
           const data = await response.json();
 
-          // Filtrage pour ne garder que les villes uniques
           const uniqueCities = data.filter((city, index, self) =>
             index === self.findIndex((c) => (
               c.name === city.name && c.country === city.country
             ))
           );
-          
+
           setSuggestions(uniqueCities);
         } catch (error) {
           console.error(error);
