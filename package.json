@@ -1,17 +1,15 @@
 {
-  "homepage": "https://romaintgithub.github.io/Appmeteo/",
+  "homepage": "https://appmeteo-ktuse8rwv-hinatos-projects.vercel.app/",
   "name": "Appmeteo",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
-  },
+  "dev": "vite",
+  "build": "vite build",
+  "lint": "eslint .",
+  "preview": "vite preview"
+},
   "dependencies": {
     "axios": "^1.11.0",
     "react": "^19.1.1",
