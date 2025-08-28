@@ -1,5 +1,6 @@
 // src/components/SearchBar.jsx
 import React, { useState, useEffect } from 'react';
+import { getCountryName } from '../utils/countryConverter';
 
 function SearchBar({ onSearch }) {
   const [input, setInput] = useState('');
@@ -55,19 +56,15 @@ function SearchBar({ onSearch }) {
         onChange={(e) => setInput(e.target.value)}
       />
       {suggestions.length > 0 && (
-        <ul className="suggestions-list">
-  {suggestions.map((city, index) => {
-    // Ajout de la traduction ici
-    const regionNames = new Intl.DisplayNames(['fr'], { type: 'region' });
-    const countryName = regionNames.of(city.country);
-
-    return (
-      <li key={index} onClick={() => handleSuggestionClick(city.name)}>
-        {city.name}, {countryName} {/* Utilisation du nom complet */}
-      </li>
-    );
-  })}
+        // ...
+<ul className="suggestions-list">
+  {suggestions.map((city, index) => (
+    <li key={index} onClick={() => handleSuggestionClick(city.name)}>
+      {city.name}, {getCountryName(city.country)}
+    </li>
+  ))}
 </ul>
+// ...
       )}
       <button onClick={() => handleSearch(input)}>Rechercher</button>
     </div>

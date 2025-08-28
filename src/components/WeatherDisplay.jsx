@@ -1,6 +1,7 @@
 // src/components/WeatherDisplay.jsx
 import React from 'react';
 import { getWeatherIcon } from './WeatherIcons'; // Importe la fonction qui retourne l'icône
+import { getCountryName } from '../utils/countryConverter';
 
 function WeatherDisplay({ data }) {
   if (!data) {
@@ -18,7 +19,7 @@ function WeatherDisplay({ data }) {
 
   return (
     <div className="weather-display">
-      <h2>Météo pour {name}, {countryName}</h2>
+      <h2>Météo pour {name}, {getCountryName(country)}</h2>
       <div className="weather-icon-container">
         {getWeatherIcon(weatherId)}
       </div>
