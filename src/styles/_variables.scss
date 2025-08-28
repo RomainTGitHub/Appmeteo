@@ -1,0 +1,12 @@
+/* src/styles/_variables.scss */
+$primary-blue: #007AFF; // Un bleu plus vif et moderne
+$light-blue: #0A84FF;
+$grey-bg: #F2F2F7; // Un gris clair pour les fonds
+$dark-text: #1C1C1E; // Texte presque noir
+$light-text: #8E8E93; // Texte gris clair
+$card-bg-light: rgba(255, 255, 255, 0.85); // Fonds de carte semi-transparents
+$card-bg-dark: rgba(28, 28, 30, 0.85); // Si on voulait un mode sombre
+$border-radius-large: 15px;
+$border-radius-small: 10px;
+$box-shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.08); // Ombre plus douce
+$box-shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12); // Ombre au survol

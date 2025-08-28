@@ -1,0 +1,215 @@
+/* src/styles/_components.scss */
+
+// Variables de base
+$primary-blue: #007AFF;
+$light-blue: #c0cbdf;
+$dark-grey: #1C1C1E;
+$light-grey: #F2F2F7;
+$card-bg: rgba(255, 255, 255, 0.9);
+$box-shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  text-align: center;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #E0EAFC 0%, #CFDEF3 100%);
+}
+
+/* --- Barre de recherche --- */
+.search-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 2rem;
+  
+  // Utilise Flexbox pour un alignement interne parfait
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.search-container input {
+  padding: 14px 20px;
+  border: 1px solid #E0E0E0;
+  border-radius: 12px;
+  font-size: 1rem;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #1C1C1E;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: #007AFF;
+    box-shadow: 0 0 0 3px rgba(#007AFF, 0.2);
+  }
+}
+
+.search-container button {
+  padding: 14px 25px;
+  background-color: #007AFF;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  &:hover {
+    background-color: darken(#007AFF, 8%);
+    transform: translateY(-1px);
+  }
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.suggestions-list {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  right: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  text-align: left;
+
+  li {
+    padding: 12px 18px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+    &:hover {
+      background-color: rgba(#007AFF, 0.1);
+    }
+  }
+}
+
+/* --- Conteneurs de la météo --- */
+.weather-and-forecast-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.weather-display, .forecast-display {
+  background-color: $card-bg;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: $box-shadow-subtle;
+  width: 90%;
+  max-width: 500px;
+}
+
+.weather-icon-container svg {
+  font-size: 6rem; // Icônes plus grandes
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.1)); // Légère ombre sur les icônes
+}
+
+// Couleurs spécifiques pour chaque type d'icône
+.icon-sun {
+  color: #FFD700; // Jaune éclatant pour le soleil
+}
+
+.icon-cloud-partial, .icon-cloud-overcast {
+  color: #A9A9A9; // Gris clair pour les nuages
+}
+
+.icon-rain, .icon-drizzle {
+  color: #4682B4; // Bleu acier pour la pluie/bruine
+}
+
+.icon-snow {
+  color: #ADD8E6; // Bleu clair pour la neige
+}
+
+.icon-bolt {
+  color: #FFD700; // Jaune pour l'orage (éclair)
+}
+
+.icon-atmosphere {
+  color: #B0C4DE; // Gris bleuté pour l'atmosphère (brouillard, etc.)
+}
+
+.forecast-item .forecast-icon-container svg {
+  font-size: 2rem;
+  // Par défaut, la couleur est héritée des styles globaux
+}
+
+/* --- Prévisions sur 5 jours --- */
+.forecast-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 1rem;
+}
+
+.forecast-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent; /* Fond de carte transparent pour un look plus épuré */
+  padding: 1rem;
+  border-radius: 12px;
+  flex-basis: 120px; /* Taille de base pour chaque carte de prévision */
+  flex-grow: 1; /* Permet aux cartes de grandir */
+  max-width: 140px; /* Limite la largeur des cartes */
+  box-shadow: none; /* Pas d'ombre pour un look plus plat */
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+  background-color: rgba(131, 131, 131, 0.055); // Fond sombre avec 10% d'opacité
+  
+  &:hover {
+    transform: translateY(-5px);
+    background-color: rgba(104, 104, 104, 0.089);
+  }
+
+  .forecast-date, .forecast-temp, .forecast-description, .forecast-humidity, .forecast-wind {
+    margin: 0;
+    font-size: 0.85rem; // Réduit un peu la taille de la police
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center; // Centre le texte
+}
+
+  p {
+    font-size: 0.9rem;
+    margin: 0.2rem 0;
+  }
+}
+
+/* --- Responsivité --- */
+@media (min-width: 768px) {
+  .search-container {
+    flex-direction: row;
+    width: auto; /* Laisse la largeur s'ajuster */
+  }
+
+  .weather-and-forecast-container {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 30px;
+  }
+  
+  .weather-display, .forecast-display {
+    flex-grow: 1;
+  }
+}

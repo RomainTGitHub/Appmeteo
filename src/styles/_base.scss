@@ -1,0 +1,32 @@
+/* src/styles/_base.scss */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: $grey-bg; // Nouveau fond clair et net
+  color: $dark-text;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased; // Pour un texte plus net sur iOS
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  color: rgb(47, 48, 128); // Titres plus sombres
+  font-size: 2.5rem;
+  font-weight: 700; // Plus gras
+  margin-bottom: 1.5rem;
+}
+
+h2, h3 {
+  color: $dark-text;
+  font-weight: 600;
+}
+
+p {
+  color: $light-text; // Texte secondaire plus clair
+  margin: 0.5rem 0;
+}
