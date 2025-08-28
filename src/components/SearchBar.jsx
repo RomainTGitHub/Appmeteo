@@ -5,14 +5,12 @@ function SearchBar({ onSearch }) {
   const [input, setInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   
-  const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
-
   // Appel API pour les suggestions de ville
   useEffect(() => {
     const fetchSuggestions = async () => {
       if (input.length > 0) {
         try {
-          const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=5&appid=${apiKey}`);
+          const response = await fetch(`/api/suggestions?q=${input}`);
           if (!response.ok) {
             throw new Error('Erreur lors de la récupération des suggestions');
           }
@@ -35,7 +33,7 @@ function SearchBar({ onSearch }) {
       }
     };
     fetchSuggestions();
-  }, [input, apiKey]);
+  }, [input]);
 
   const handleSearch = (city) => {
     onSearch(city);
