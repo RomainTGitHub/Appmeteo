@@ -12,30 +12,34 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchWeatherData = async () => {
-    if (!city) return;
 
-    setLoading(true);
-    setError(null);
 
-    try {
-      const response = await fetch(`/api/donnees?city=${city}`);
-      if (!response.ok) {
-        throw new Error('Erreur lors de la récupération des données.');
-      }
-      const data = await response.json();
-      
-      setWeatherData(data.weather);
-      setForecastData(data.forecast);
+ const fetchWeatherData = async () => {
+  if (!city) return;
 
-    } catch (err) {
-      setError(err.message);
-      setWeatherData(null);
-      setForecastData(null);
-    } finally {
-      setLoading(false);
+  setLoading(true);
+  setError(null);
+
+  try {
+    // Appel sécurisé à votre fonction sans serveur
+    const response = await fetch(`/api/donnees?city=${city}`); 
+    if (!response.ok) {
+      throw new Error('Erreur lors de la récupération des données.');
     }
-  };
+    const data = await response.json();
+    
+    // Assigner les données combinées à vos états
+    setWeatherData(data.weather);
+    setForecastData(data.forecast);
+
+  } catch (err) {
+    setError(err.message);
+    setWeatherData(null);
+    setForecastData(null);
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     fetchWeatherData();
@@ -50,6 +54,7 @@ function App() {
         <SearchBar onSearch={setCity} />
         {loading && <p>Chargement en cours...</p>}
         {error && <p className="error">{error}</p>}
+        {/* NOUVEAU CONTENEUR POUR L'ALIGNEMENT */}
         <div className="weather-and-forecast-container">
           {!loading && !error && weatherData && <WeatherDisplay data={weatherData} />}
           {!loading && !error && forecastData && <ForecastDisplay data={forecastData} />}
